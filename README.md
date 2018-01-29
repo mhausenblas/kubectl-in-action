@@ -1,4 +1,4 @@
-# `kubectl` In Action
+# kubectl In Action
 
 _Or: How to use your Kubernetes remote control_
 
