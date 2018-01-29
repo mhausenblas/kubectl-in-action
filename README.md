@@ -52,19 +52,53 @@ What was that field in the manifest again?
 $ kubectl explain statefulset.spec.template.spec
 ```
 
-## Workloads
+## Managing workloads
 
-Simple jump pod:
+Launching a simple jump pod:
 
 ```
 $ kubectl run -i -t --rm jump --image=quay.io/mhausenblas/jump:v0.1 -- sh
 ```
 
-Name of pod(s) labelled with `app=example`:
+Do a dry-run for a long-running process (NGINX):
 
 ```
-$ kubectl get po -l=app=example -o=custom-columns=:metadata.name --no-headers
+$ kubectl run webserver --image=nginx1:13 --output=yaml --dry-run
 ```
+
+Get the name of deployment labelled with `run` as key:
+
+```
+$ kubectl get deploy -l=run -o=custom-columns=:metadata.name --no-headers
+```
+
+Get the name of pod(s) labelled with `run=webserver`:
+
+```
+$ kubectl get po -l=run=webserver -o=custom-columns=:metadata.name --no-headers
+```
+
+Scale the `webserver` deployment to 2 replicas and observe the scaling:
+
+```
+# in shell terminal 1:
+$ kubectl get po -l=run=webserver -o=custom-columns=:metadata.name --no-headers --watch
+
+# in shell terminal 2:
+$ kubectl scale deploy/webserver --replicas=2
+```
+
+Get rid of `webserver` deployment by scaling down to 0 and deleting it:
+
+```
+$ kubectl scale deploy/webserver --replicas=0
+$ kubectl delete deploy/webserver
+```
+
+## Services
+
+TBD: `expose` and then curl via jump pod
+
 
 ## Accessing the API
 
