@@ -6,6 +6,18 @@ This is a talk at [Pre-FOSDEM warmup with Kubernetes](https://www.meetup.com/Bru
 
 Kubernetes comes with kubectl, a CLI that allows you to interact with your cluster, supporting operations from config to managing workloads to administrative tasks. In this talk you'll learn everything you need to know getting the most out of kubectl and beyond.
 
+- [Setup](#setup)
+- [Contexts](#contexts)
+- [Docs](#docs)
+- [Managing workloads](#managing-workloads)
+- [Services](#services)
+- [Accessing the API](#accessing-the-api)
+- [RBAC](#rbac)
+- [Debugging](#debugging)
+- [Tips and tricks](#tips-and-tricks)
+- [Tooling](#tooling)
+- [Further reading & watching](#further-reading-watching)
+
 ## Setup
 
 I'm new to a cluster, so I have a look around.
