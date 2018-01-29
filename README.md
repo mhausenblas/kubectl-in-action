@@ -23,18 +23,33 @@ Can I have a generic dump of `~/.kube/config`?
 $ kubectl config view
 ```
 
-## Docs and config
-
-What was that field in the manifest again?
-
-```
-$ kubectl explain statefulset.spec.template.spec
-```
+## Contexts
 
 What contexts are available?
 
 ```
 $ kubectl config get-contexts
+```
+
+Switch to a certain context:
+
+```
+$ kubectl config use minikube
+```
+
+Create context `somek` and switch to it:
+
+```
+$ kubectl config set-context somek --user=cluster-admin --namespace=meh && \
+  kubectl config use-context somek
+```
+
+## Docs
+
+What was that field in the manifest again?
+
+```
+$ kubectl explain statefulset.spec.template.spec
 ```
 
 ## Workloads
