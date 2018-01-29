@@ -72,10 +72,25 @@ $ kubectl logs
 - Install and use [auto-complete](https://kubernetes.io/docs/tasks/tools/install-kubectl/#enabling-shell-autocompletion)
 - set `KUBE_EDITOR` to your favorite editor
 
-Tools that extend and enhance `kubectl`:
+## Tooling
 
-- https://github.com/jonmosco/kube-ps1
-- https://github.com/ahmetb/kubectx
-- https://github.com/cloudnativelabs/kube-shell
-- https://github.com/nii236/kk
-- http://kubed.sh/
+Extend and enhance `kubectl` with:
+
+- [jonmosco/kube-ps1](https://github.com/jonmosco/kube-ps1)
+- [ahmetb/kubectx](https://github.com/ahmetb/kubectx)
+- [cloudnativelabs/kube-shell](https://github.com/cloudnativelabs/kube-shell)
+- [nii236/kk](https://github.com/nii236/kk)
+- [CanopyTax/ckube](https://github.com/CanopyTax/ckube)
+- [kubed.sh](http://kubed.sh/)
+
+![extending kubectl](img/aab-twitter.jpg)
+
+Source: [Ahmet Alp Balkan](https://twitter.com/ahmetb/status/949064018483802112) on Twitter 01/2018.
+
+
+## Further reading & watching
+
+- [Troubleshoot Kubernetes Deployments](https://docs.bitnami.com/kubernetes/how-to/troubleshoot-kubernetes-deployments/)
+- [What happens when you do kubectl run](https://github.com/jamiehannaford/what-happens-when-k8s/blob/master/README.md)
+- [Kubernetes kubectl Tips and Tricks](https://coreos.com/blog/kubectl-tips-and-tricks)
+- [Some things you didn’t know about kubectl](http://blog.kubernetes.io/2015/10/some-things-you-didnt-know-about-kubectl_28.html)
