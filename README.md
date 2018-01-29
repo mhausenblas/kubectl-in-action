@@ -188,17 +188,32 @@ Streaming the logs of a pod:
 $ kubectl logs --follow $(kubectl get po -l=run=webserver -o=custom-columns=:metadata.name --no-headers)
 ```
 
+Note of a problem and retrieve it:
+
+```
+$ kubectl annotate pods $(kubectl get po -l=run=webserver -o=custom-columns=:metadata.name --no-headers) troubleshoot='something really fishy going on here'
+$ kubectl describe po $(kubectl get po -l=run=webserver -o=custom-columns=:metadata.name --no-headers) | grep troubleshoot
+```
+
 Get the content of a HTTP service running in the cluster to my local machine on port `8080`:
 
 ```
 $ kubectl port-forward $(kubectl get po -l=run=webserver -o=custom-columns=:metadata.name --no-headers) 8080:80
 ```
 
+How's one of my nodes doing? Note: requires Heapster installed.
+
+```
+$ kubectl top node minikube
+```
+
 ## Tips and tricks
 
 - Install and use [auto-complete](https://kubernetes.io/docs/tasks/tools/install-kubectl/#enabling-shell-autocompletion)
-- Set `KUBE_EDITOR` to your favorite editor
-- Maybe have a look at the [tooling](#tooling) section below and try one or more of the available extensions of `kubectl`?
+- Set `KUBE_EDITOR` to your favorite editor.
+- Maybe check out at the [tooling](#tooling) section below and try one or more of the available extensions of `kubectl`?
+- Have a look at your history (see also my example).
+- Use `kubed-sh` with `debug` mode on.
 
 ## Tooling
 
