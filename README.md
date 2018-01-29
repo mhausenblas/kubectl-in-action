@@ -46,6 +46,18 @@ $ kubectl config set-context somek --user=cluster-admin --namespace=meh && \
 
 ## Docs
 
+What can I do with a command?
+
+```
+$ kubectl run -h
+```
+
+Got some usage examples?
+
+```
+$ kubectl run -h | tail -n+$(kubectl run -h | grep -n Example | grep -Eo '^[^:]+') | head -n $(kubectl run -h | grep -n Options | grep -Eo '^[^:]+')
+```
+
 What was that field in the manifest again?
 
 ```
@@ -57,7 +69,7 @@ $ kubectl explain statefulset.spec.template.spec
 Launching a simple jump pod:
 
 ```
-$ kubectl run -i -t --rm jump --image=quay.io/mhausenblas/jump:v0.1 -- sh
+$ kubectl run -i -t --rm jumpod --image=quay.io/mhausenblas/jump:v0.1 -- sh
 ```
 
 Do a dry-run for a long-running process (NGINX):
@@ -97,8 +109,11 @@ $ kubectl delete deploy/webserver
 
 ## Services
 
-TBD: `expose` and then curl via jump pod
+```
+$ kubectl expose deploy webserver --port=80 --target-port=8000
+```
 
+TBD: `expose` and then curl via jump pod
 
 ## Accessing the API
 
