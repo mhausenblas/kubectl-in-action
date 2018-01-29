@@ -8,8 +8,19 @@ Kubernetes comes with kubectl, a CLI that allows you to interact with your clust
 
 ## Setup
 
+I'm new to a cluster, so I have a look around.
+
+What version am I on (client-side and server-side)?
+
 ```
-$ kubectl config
+$ kubectl version
+$ kubectl version --short
+```
+
+Can I have a generic dump of `~/.kube/config`?
+
+```
+$ kubectl config view
 ```
 
 ## Docs and config
@@ -20,7 +31,7 @@ What was that field in the manifest again?
 $ kubectl explain statefulset.spec.template.spec
 ```
 
-List contexts:
+What contexts are available?
 
 ```
 $ kubectl config get-contexts
