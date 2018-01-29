@@ -81,13 +81,13 @@ $ kubectl explain statefulset.spec.template.spec
 Launching a simple jump pod:
 
 ```
-$ kubectl run -i -t --rm jumpod --image=quay.io/mhausenblas/jump:v0.1 -- sh
+$ kubectl run -i -t --rm jumpod --restart=Never --image=quay.io/mhausenblas/jump:v0.1 -- sh
 ```
 
 Do a dry-run for a long-running process (NGINX):
 
 ```
-$ kubectl run webserver --image=nginx1:13 --output=yaml --dry-run
+$ kubectl run webserver --image=nginx:1.13 --output=yaml --dry-run
 ```
 
 Get the name of deployment labelled with `run` as key:
@@ -121,11 +121,19 @@ $ kubectl delete deploy/webserver
 
 ## Services
 
+Create a service `webserver` for a deployment and check it:
+
 ```
-$ kubectl expose deploy webserver --port=80 --target-port=8000
+$ kubectl run webserver --image=nginx:1.13
+$ kubectl expose deployment webserver --port=80 --target-port=80
+$ kubectl get svc -l=run=webserver
 ```
 
-TBD: `expose` and then curl via jump pod
+I'd like to `curl` the new `webserver` service from within the cluster:
+
+```
+$ kubectl run -i -t --rm curlpod --restart=Never --image=quay.io/mhausenblas/jump:v0.1 -- curl webserver
+```
 
 ## Accessing the API
 
@@ -152,6 +160,7 @@ $ kubectl create rolebinding podreaderbinding --role=sec:podreader --serviceacco
 ```
 $ kubectl get events
 $ kubectl logs
+$ kubectl port-forward $(kubectl get po -l=run=webserver -o=custom-columns=:metadata.name --no-headers) 8080:80
 ```
 
 ## Tips and tricks
