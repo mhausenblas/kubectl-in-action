@@ -16,7 +16,7 @@ Kubernetes comes with kubectl, a CLI that allows you to interact with your clust
 - [Debugging](#debugging)
 - [Tips and tricks](#tips-and-tricks)
 - [Tooling](#tooling)
-- [Further reading & watching](#further-reading-watching)
+- [Further reading & watching](#further-reading--watching)
 
 ## Setup
 
@@ -187,6 +187,7 @@ Source: [Ahmet Alp Balkan](https://twitter.com/ahmetb/status/949064018483802112)
 ## Further reading & watching
 
 - [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/) via Kubernetes docs
+- [kubernetesbyexample.com](http://kubernetesbyexample.com/)
 - [Troubleshoot Kubernetes Deployments](https://docs.bitnami.com/kubernetes/how-to/troubleshoot-kubernetes-deployments/)
 - [What happens when you do kubectl run](https://github.com/jamiehannaford/what-happens-when-k8s/blob/master/README.md)
 - [Kubernetes kubectl Tips and Tricks](https://coreos.com/blog/kubectl-tips-and-tricks)
