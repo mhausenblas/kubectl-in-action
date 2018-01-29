@@ -62,6 +62,7 @@ What can I do with a command?
 
 ```
 $ kubectl run -h
+$ kubectl create -h | less
 ```
 
 Got some usage examples?
@@ -126,7 +127,7 @@ Create a service `webserver` for a deployment and check it:
 ```
 $ kubectl run webserver --image=nginx:1.13
 $ kubectl expose deployment webserver --port=80 --target-port=80
-$ kubectl get svc -l=run=webserver
+$ kubectl describe svc -l=run=webserver
 ```
 
 I'd like to `curl` the new `webserver` service from within the cluster:
@@ -141,32 +142,63 @@ $ kubectl run -i -t --rm curlpod --restart=Never --image=quay.io/mhausenblas/jum
 $ kubectl proxy
 ```
 
-### RBAC
+## RBAC
 
-Can a certain SA list pods?
-
-```
-$ kubectl auth can-i list pods --as=system:serviceaccount:sec:myappsa
-```
-
-Create rolebinding for an SA in a specified namespace and just do a dry run:
+So, can I have a namespace called `test` please?
 
 ```
-$ kubectl create rolebinding podreaderbinding --role=sec:podreader --serviceaccount=sec:myappsa --namespace=sec --dry-run=true -o=yaml -n=sec
+$ kubectl create -f https://raw.githubusercontent.com/mhausenblas/kbe/master/specs/ns/ns.yaml
+```
+
+Creating a service account `dummy` in `test` namespace:
+
+```
+$
+```
+
+Can the service account `dummy` list pods?
+
+```
+$ kubectl auth can-i list pods --as=system:serviceaccount:test:dummy
+```
+
+Creating a role `podreader` in `test` namespace:
+
+```
+$
+```
+
+Create a rolebinding for service account `dummy` in namespace `test` and just do a dry run:
+
+```
+$ kubectl create rolebinding podreaderbinding --role=test:podreader --serviceaccount=test:dummy --namespace=test --dry-run=true -o=yaml
 ```
 
 ## Debugging
 
+Drink from the events firehose:
+
 ```
 $ kubectl get events
-$ kubectl logs
+```
+
+Streaming the logs of a pod:
+
+```
+$ kubectl logs --follow $(kubectl get po -l=run=webserver -o=custom-columns=:metadata.name --no-headers)
+```
+
+Get the content of a HTTP service running in the cluster to my local machine on port `8080`:
+
+```
 $ kubectl port-forward $(kubectl get po -l=run=webserver -o=custom-columns=:metadata.name --no-headers) 8080:80
 ```
 
 ## Tips and tricks
 
 - Install and use [auto-complete](https://kubernetes.io/docs/tasks/tools/install-kubectl/#enabling-shell-autocompletion)
-- set `KUBE_EDITOR` to your favorite editor
+- Set `KUBE_EDITOR` to your favorite editor
+- Maybe have a look at the [tooling](#tooling) section below and try one or more of the available extensions of `kubectl`?
 
 ## Tooling
 
