@@ -60,7 +60,7 @@ $ kubectl config set-context somek --user=cluster-admin --namespace=meh && \
 
 ## Docs
 
-> I'm lost. I can't remember a command. I need help.
+> I'm lost. I can't remember a command. I need examples.
 
 What can I do with a command?
 
@@ -265,8 +265,8 @@ Source: [Ahmet Alp Balkan](https://twitter.com/ahmetb/status/949064018483802112)
 > I want to read up and watch more on this topic, any suggestions?
 
 - [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/) via Kubernetes docs
-- [kubernetesbyexample.com](http://kubernetesbyexample.com/)
+- More examples via [kubernetesbyexample.com](http://kubernetesbyexample.com/)
 - [Troubleshoot Kubernetes Deployments](https://docs.bitnami.com/kubernetes/how-to/troubleshoot-kubernetes-deployments/)
-- [What happens when you do kubectl run](https://github.com/jamiehannaford/what-happens-when-k8s/blob/master/README.md)
+- Deep-dive: [What happens when you do kubectl run](https://github.com/jamiehannaford/what-happens-when-k8s/blob/master/README.md)
 - [Kubernetes kubectl Tips and Tricks](https://coreos.com/blog/kubectl-tips-and-tricks)
 - [Some things you didn’t know about kubectl](http://blog.kubernetes.io/2015/10/some-things-you-didnt-know-about-kubectl_28.html)
