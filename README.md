@@ -20,7 +20,7 @@ Kubernetes comes with kubectl, a CLI that allows you to interact with your clust
 
 ## Setup
 
-I'm new to a cluster, so I have a look around.
+> I'm new to a cluster, so I have a look around.
 
 What version am I on (client-side and server-side)?
 
@@ -36,6 +36,8 @@ $ kubectl config view
 ```
 
 ## Contexts
+
+> I have multiple clusters, want to switch around.
 
 What contexts are available?
 
@@ -58,6 +60,8 @@ $ kubectl config set-context somek --user=cluster-admin --namespace=meh && \
 
 ## Docs
 
+> I'm lost. I can't remember a command. I need help.
+
 What can I do with a command?
 
 ```
@@ -78,6 +82,8 @@ $ kubectl explain statefulset.spec.template.spec
 ```
 
 ## Managing workloads
+
+> I want to launch stuff.
 
 Launching a simple jump pod:
 
@@ -122,6 +128,8 @@ $ kubectl delete deploy/webserver
 
 ## Services
 
+> I want to access stuff via the network.
+
 Create a service `webserver` for a deployment and check it:
 
 ```
@@ -138,11 +146,15 @@ $ kubectl run -i -t --rm curlpod --restart=Never --image=quay.io/mhausenblas/jum
 
 ## Accessing the API
 
+> I need access to the Kubernetes API for development and testing.
+
 ```
 $ kubectl proxy
 ```
 
 ## RBAC
+
+> I want to use fine-grained access control.
 
 So, can I have a namespace called `test` please?
 
@@ -150,31 +162,44 @@ So, can I have a namespace called `test` please?
 $ kubectl create -f https://raw.githubusercontent.com/mhausenblas/kbe/master/specs/ns/ns.yaml
 ```
 
-Creating a service account `dummy` in `test` namespace:
+Let's first create a service account `dummy` in the `test` namespace:
 
 ```
-$
+$ kubectl create serviceaccount dummy --namespace=test
+$ kubectl get sa -n=test
 ```
 
-Can the service account `dummy` list pods?
+Next, creating a role `podreader` in `test` namespace:
 
 ```
-$ kubectl auth can-i list pods --as=system:serviceaccount:test:dummy
+$ kubectl create role podreader --verb=get --verb=list --resource=pods --namespace=test
+$ kubectl get roles --namespace=test
 ```
 
-Creating a role `podreader` in `test` namespace:
+And now, I'll use a rolebinding (in namespace `test` ) that connects all above, effectively stating the following: the service account `dummy` is only allowed to list and get pods (aka a `podreader`).
+
+To verify, let's first just have a look at the YAML manifest that represents this access control statement (using `--dry-run=true`) and only then actually create the binding:
 
 ```
-$
+$ kubectl create rolebinding podreaderbinding --role=podreader --serviceaccount=test:dummy --namespace=test --dry-run=true -o=yaml
+$ kubectl create rolebinding podreaderbinding --role=podreader --serviceaccount=test:dummy --namespace=test
 ```
 
-Create a rolebinding for service account `dummy` in namespace `test` and just do a dry run:
+Now, checking, can the service account `dummy` list pods?
 
 ```
-$ kubectl create rolebinding podreaderbinding --role=test:podreader --serviceaccount=test:dummy --namespace=test --dry-run=true -o=yaml
+$ kubectl auth can-i list pods --as=system:serviceaccount:test:dummy --namespace=test
+```
+
+And what about, say, creating services?
+
+```
+$ kubectl auth can-i create services --as=system:serviceaccount:test:dummy --namespace=test
 ```
 
 ## Debugging
+
+> I'm in deep trouble. I need to figure out why things went sideways.
 
 Drink from the events firehose:
 
@@ -209,6 +234,8 @@ $ kubectl top node minikube
 
 ## Tips and tricks
 
+> I'm sold, `kubectl` is awesome! What else have you got?
+
 - Install and use [auto-complete](https://kubernetes.io/docs/tasks/tools/install-kubectl/#enabling-shell-autocompletion)
 - Set `KUBE_EDITOR` to your favorite editor.
 - Maybe check out at the [tooling](#tooling) section below and try one or more of the available extensions of `kubectl`?
@@ -216,6 +243,8 @@ $ kubectl top node minikube
 - Use `kubed-sh` with `debug` mode on.
 
 ## Tooling
+
+> Gimme some more tools I can use to make my `kubectl` even cooler.
 
 Extend and enhance `kubectl` with:
 
@@ -232,6 +261,8 @@ Source: [Ahmet Alp Balkan](https://twitter.com/ahmetb/status/949064018483802112)
 
 
 ## Further reading & watching
+
+> I want to read up and watch more on this topic, any suggestions?
 
 - [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/) via Kubernetes docs
 - [kubernetesbyexample.com](http://kubernetesbyexample.com/)
