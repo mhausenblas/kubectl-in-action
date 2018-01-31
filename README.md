@@ -83,6 +83,14 @@ $ kubectl explain statefulset.spec.template.spec
 
 ## Managing workloads
 
+> What's running?
+
+I want to get an overview of all pods across all namespaces:
+
+```
+$ kubectl get pods --all-namespaces
+```
+
 > I want to launch stuff.
 
 Launching a simple jump pod:
