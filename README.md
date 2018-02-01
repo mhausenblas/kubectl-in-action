@@ -273,6 +273,7 @@ Source: [Ahmet Alp Balkan](https://twitter.com/ahmetb/status/949064018483802112)
 > I want to read up and watch more on this topic, any suggestions?
 
 - [kubectl Cheat Sheet](https://kubernetes.io/docs/reference/kubectl/cheatsheet/) via Kubernetes docs
+- [Imperative/Declarative and a Few `kubectl` tricks](https://medium.com/bitnami-perspectives/imperative-declarative-and-a-few-kubectl-tricks-9d6deabdde)
 - More examples via [kubernetesbyexample.com](http://kubernetesbyexample.com/)
 - [Troubleshoot Kubernetes Deployments](https://docs.bitnami.com/kubernetes/how-to/troubleshoot-kubernetes-deployments/)
 - Deep-dive: [What happens when you do kubectl run](https://github.com/jamiehannaford/what-happens-when-k8s/blob/master/README.md)
