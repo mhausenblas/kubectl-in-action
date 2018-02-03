@@ -48,7 +48,7 @@ $ kubectl config get-contexts
 Switch to a certain context:
 
 ```
-$ kubectl config use minikube
+$ kubectl config use-context minikube
 ```
 
 Create context `somek` and switch to it:
