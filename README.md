@@ -96,7 +96,7 @@ $ kubectl get pods --all-namespaces
 Launching a simple jump pod:
 
 ```
-$ kubectl run -i -t --rm jumpod --restart=Never --image=quay.io/mhausenblas/jump:v0.1 -- sh
+$ kubectl run -i -t --rm jumpod --restart=Never --image=quay.io/mhausenblas/jump:0.2 -- sh
 ```
 
 Do a dry-run for a long-running process (NGINX):
@@ -149,7 +149,7 @@ $ kubectl describe svc -l=run=webserver
 I'd like to `curl` the new `webserver` service from within the cluster:
 
 ```
-$ kubectl run -i -t --rm curlpod --restart=Never --image=quay.io/mhausenblas/jump:v0.1 -- curl webserver
+$ kubectl run -i -t --rm curlpod --restart=Never --image=quay.io/mhausenblas/jump:0.2 -- curl webserver
 ```
 
 ## Accessing the API
